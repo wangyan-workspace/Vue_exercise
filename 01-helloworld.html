@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- {{}} 用于标签体内，显示Vue实例data中绑定的数据信息 -->
+        hello {{msg}}
+        <br>
+        <!-- v-model 进行数据的双向绑定 通过修改data中绑定的数据键值来更改vue实例中的数据信息的显示 -->
+        <input type="text" v-model="msg">
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        // 新创建的vue实例
+        var vm = new Vue({
+            el: "#app", //指定被vue管理的入口，值为选择器，不可以为html 或 body
+            data:{//用于初始化数据，在vue实例管理的Dom节点下，可通过模板 {{}} 来引用
+                msg: "林海洋"
+            }
+        })
+    </script>
+</body>
+</html>
