@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h3>1.事件处理方式：v-on 或 @事件名</h3>
+        <button v-on:click="say">say {{msg}}</button>
+        <!-- $event代表的就是原生的dom事件对象 -->
+        <button v-on:click="say2('heihei',$event)">say2</button>
+
+        <h3>2.事件修饰符</h3>
+        <!-- 防止事件冒泡 -->
+        <div @click="todo">
+            <button @click.stop="doThis">阻止冒泡</button>
+        </div>
+        <!-- 阻止浏览器的默认行为 -->
+        <a href="https://www.baidu.com" @click.prevent="doStop">跳转</a>
+        <br>
+        <!-- 事件只执行一次 -->
+        <button @click.once="doOnly">事件只会发生一次---{{num}}</button>
+
+        <h3>3.按键修饰符</h3>
+        回车键enter：<input type="text" @keyup.enter="keyEnter"><br>
+        删除键delete：<input type="text" @keydown.delete="keyDelete"><br>
+        键盘键l:<input type="text" @keyup.l="keyLhy">
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                msg: 'hello haiyang',
+                num: 1
+            },
+            methods:{
+                say:function(event){//只有一个event形参时，调用函数可以不传实参
+                    alert(this.msg);
+                    // console.log(event);  //event是函数中的默认形参，代表原生 DOM 事件
+                    //console.log(event.target); //<button>say hello haiyang</button>
+                    alert(event.target.innerHTML);
+                },
+                say2:function(name,event){//此时有除event以外的其他形参，调用函数必须传入个数，位置相对应的实参
+                    alert(name + event.target.innerHTML)
+                },
+                todo:function(){
+                    alert('todo...');
+                },
+                doThis:function(){
+                    alert('doThis...');
+                },
+                doStop:function(){
+                    alert('doStop...');
+                },
+                doOnly:function(){
+                    this.num++;
+                },
+                keyEnter:function(){
+                    alert('keyEnter...');
+                },
+                keyDelete:function(){
+                    alert('keyDelete...');
+                },
+                keyLhy:function(){
+                    alert('I Love You,linhaiyang');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

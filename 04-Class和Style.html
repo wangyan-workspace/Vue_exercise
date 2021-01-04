@@ -19,8 +19,11 @@
 <body>
     <div id="app">
         <h3>Class绑定：v-bind:class 或者 :class</h3>
+        <!--activeClass会从data中获取值为active,则对应样式为红色-->
         <p v-bind:class = "activeClass">字符串表达式</p>
+        <!-- isDelete为 true，渲染delete样式；当 hasError为false，不取 error 样式;-->
         <p :class="{delete:isDelete,error:hasError}">对象表达式</p>
+        <!--- 渲染 'active', 'error' 样式,注意要加上单引号,不然是获取data中的值 -->
         <p :class="['active','error']">数组表达式</p>
         <h3>style绑定： v-bind:style 或者 ：style绑定</h3>
         <p :style="{color:'orange',fontSize:fs + 'px',background:bg}">style样式</p>
