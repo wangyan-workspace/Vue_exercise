@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- {{js表达式}} -->
+        <h3>1.{{}}双大括号输出文本内容</h3>
+        <p>{{message}}</p>
+        <p>{{score+1}}</p>
+
+        <h3>2.一次性插值v-once</h3>
+        <p v-once>{{message}}</p>
+
+        <h3>3.指令真正的html内容，v-html</h3>
+        <p>{{contentHtml}}</p>
+        <!-- 
+            v-html
+            1.如果输入的内容是html数据，双大括号将数据以普通文本方式进行输出
+            2.v-html输出真正的html效果
+            3.可以防止xss攻击
+         -->
+         <p>v-html: <span v-html="contentHtml"></span> </p>
+
+         <h3>4.元素绑定指令 v-bind</h3>
+         <img src="https://cn.vuejs.org/images/logo.png" alt="">
+         <!-- <img src="imgUrl" alt=""> -->
+         <img v-bind:src="imgUrl" alt="">
+         <img :src="imgUrl" alt="">
+         <br>
+         <a :href="testUrl">百度一下</a>
+
+         <h3>5.事件绑定指令 v-on</h3>
+         <input type="text" v-model="num">  数据双向绑定
+         <button v-on:click="add" v-bind:title="test">点击+1</button>
+         <!-- 绑定事件简写形式 -->
+         <button @click="add">点击+1</button>
+         
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                message: 'haiyang',
+                score: 100,
+                contentHtml:"<span style='color:red;'>红色的文字<script>alert(hello Vue)<\/script></span>",
+                imgUrl: 'https://cn.vuejs.org/images/logo.png',
+                testUrl: 'https://www.baidu.com',
+                num: 1,
+                test: 'O(∩_∩)O哈哈~😁'
+            },
+            methods:{//指定事件处理函数
+                add:function(){
+                    this.num++;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
