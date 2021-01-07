@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 显示或隐藏的过渡效果 */
+        .bk-enter-active,.bk-leave-active{
+            transition: opacity 1s;
+        }
+        .bk-enter,.bk-leave-to{
+            opacity: 0;
+        }
+        /* 可以针对显示和隐藏指定不同的效果 */
+        .lhy-enter-active{
+            transition: all 1s;
+        }
+        .lhy-leave-active{
+            transition: all 3s;
+        }
+        .lhy-enter,.lhy-leave-to{
+            opacity: 0;
+            transform: translateX(50px);
+        }
+    </style>
+</head>
+<body>
+    <div id="app1">
+        <button @click="show=!show">渐变过渡</button>
+        <transition name="bk">
+            <p v-show="show">测试文字测试文字</p>
+        </transition>
+    </div>
+    <div id="app2">
+        <button @click="show=!show">渐变平滑过渡</button>
+        <transition name="lhy">
+            <p v-show="show">测试文字测试文字</p>
+        </transition>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app1",
+            data:{
+                show:true,
+            }
+        })
+        new Vue({
+            el: "#app2",
+            data:{
+                show:true,
+            }
+        })
+    </script>
+</body>
+</html>
