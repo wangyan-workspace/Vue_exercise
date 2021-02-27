@@ -3,6 +3,7 @@
     <div id="app">
         <!--头部导航区域-->
         <app-navbar></app-navbar>
+
         <!--核心区域:分左右两边-->
         <div class="container-fluid">
         <div class="row">
@@ -11,7 +12,10 @@
             <app-left></app-left>
 
             <!--右边主页面区域: 分上下两个区域-->
-            <app-home></app-home>
+            <app-home>
+                <h1 class="page-header" slot="dashboard">{{title}}</h1>
+            </app-home>
+            
         </div>
         </div>
     </div>
@@ -22,6 +26,11 @@
             "app-navbar": AppNavbar,
             "app-left": appLeft,
             "app-home": appHome
+        },
+        data() {
+            return {
+                title: "仪表盘"
+            }
         }
     }
 })()
